@@ -2,7 +2,7 @@
 
 A `.github` customization template that uses the [Cynefin Dynamics](https://cynefin.io/wiki/Cynefin_Dynamics) framework to guide digital product development — from early idea validation through to scaled production.
 
-Every perspective (business, customer, design, development, data, cloud) is always present. Every decision is documented. Every experiment is tracked.
+Every perspective that matters is heard — core perspectives (business, customer, architecture) are always present, and specialists (development, design, data, cloud, security, accessibility) join based on topic relevance. Every decision is documented. Every experiment is tracked.
 
 ## What is this?
 
@@ -10,7 +10,7 @@ This is a **GitHub Copilot (VS Code) project template** that provides custom age
 
 1. **Understanding where you are** — mapping each area of your project to a Cynefin domain
 2. **Working the right way** — probing when uncertain, building when confident, automating when clear
-3. **Hearing all perspectives** — mob-style collaboration with 6 specialist viewpoints
+3. **Hearing all perspectives** — mob-style collaboration with 3 core + up to 6 optional specialist viewpoints
 4. **Documenting everything** — decisions, experiments, and learnings are always recorded
 
 ## Quick Start
@@ -38,7 +38,8 @@ You: /assess core value proposition
 → Recommends next steps (probably /probe or /mob)
 
 You: /mob should we build a B2B SaaS or a marketplace?
-→ All 6 perspectives weigh in
+→ Core perspectives (business, customer, architect) always weigh in
+→ Optional perspectives invited based on relevance
 → Conflicts and consensus are surfaced
 → Action items generated
 
@@ -60,7 +61,7 @@ You: /decide use Next.js for frontend
 | `/probe [hypothesis]` | Design a safe-to-fail experiment | In Complex domain — testing unknowns |
 | `/validate [area]` | Check if a pattern is stable enough to transition | At inflection points (Alpha/Beta/Delta) |
 | `/decide [title]` | Record a decision as an ADR | Any significant decision |
-| `/mob [topic]` | Get all 6 perspectives on a topic | Major decisions, architecture, pivots |
+| `/mob [topic]` | Get core + relevant perspectives on a topic | Major decisions, architecture, pivots |
 | `/retro` | Retrospective — review progress and learnings | Regularly, or when feeling stuck |
 | `/pivot [reason]` | Trigger radical rethinking (Red Line dynamic) | When current direction is fundamentally wrong |
 
@@ -134,18 +135,28 @@ Agents guide you through the Cynefin workflow via **handoffs** — clickable but
 | `@solution-builder` | Complicated | Builds solutions with expert judgment |
 | `@standardizer` | Clear | Automates, standardizes, and hardens processes |
 | `@disruptor` | Aporetic/Chaotic | Radical rethinking in isolated branches |
-| `@mob-facilitator` | All | Orchestrates mob sessions with all 6 perspectives |
+| `@mob-facilitator` | All | Orchestrates mob sessions with core + optional perspectives |
 
 ### Perspective Agents (What to Consider)
+
+**Core (always present in mob sessions):**
 
 | Agent | Perspective |
 |-------|------------|
 | `@business-strategist` | Value proposition, business model, market, revenue |
 | `@customer-advocate` | User needs, journeys, pain points, Jobs-to-be-Done |
-| `@designer` | UX/UI, service design, accessibility, prototyping |
-| `@developer` | Architecture, tech choices, code quality, feasibility |
-| `@data-specialist` | Data model, analytics, metrics, AI/ML, privacy |
-| `@cloud-infra` | Cloud services, infrastructure, scaling, security, cost |
+| `@architect` | System design, technology strategy, integration, NFRs |
+
+**Optional (invited based on topic relevance):**
+
+| Agent | Perspective | Invite When |
+|-------|------------|-------------|
+| `@developer` | Code quality, feasibility, technical debt, testing | Building, coding, implementation |
+| `@designer` | UX/UI, service design, usability, general a11y awareness | User interfaces, interaction, content |
+| `@data-specialist` | Data model, analytics, metrics, AI/ML, privacy | Data flows, analytics, governance |
+| `@cloud-infra` | Cloud services, infrastructure, scaling, cost | Deployment, infra, operations |
+| `@security-specialist` | Threat modeling, auth, data protection, compliance | Auth, sensitive data, integrations |
+| `@accessibility-specialist` | WCAG, assistive technology, inclusive design | UI, forms, content, public features |
 
 ## Project Structure
 
@@ -153,7 +164,7 @@ Agents guide you through the Cynefin workflow via **handoffs** — clickable but
 your-project/
 ├── .github/
 │   ├── copilot-instructions.md    # Main Copilot instructions & Cynefin overview
-│   ├── agents/                    # 13 agent definitions (.agent.md)
+│   ├── agents/                    # 16 agent definitions (.agent.md)
 │   │   ├── navigator.agent.md     #   Domain orchestrator with handoffs
 │   │   ├── probe-runner.agent.md  #   Complex domain
 │   │   ├── pattern-validator.agent.md  # Alpha inflection
@@ -161,12 +172,15 @@ your-project/
 │   │   ├── standardizer.agent.md  #   Clear domain
 │   │   ├── disruptor.agent.md     #   Aporetic/Chaotic
 │   │   ├── mob-facilitator.agent.md #  All-perspective orchestrator
-│   │   ├── business-strategist.agent.md
-│   │   ├── customer-advocate.agent.md
-│   │   ├── designer.agent.md
-│   │   ├── developer.agent.md
-│   │   ├── data-specialist.agent.md
-│   │   └── cloud-infra.agent.md
+│   │   ├── business-strategist.agent.md  # Core perspective
+│   │   ├── customer-advocate.agent.md    # Core perspective
+│   │   ├── architect.agent.md     #   Core perspective
+│   │   ├── developer.agent.md     #   Optional perspective
+│   │   ├── designer.agent.md      #   Optional perspective
+│   │   ├── data-specialist.agent.md     # Optional perspective
+│   │   ├── cloud-infra.agent.md   #   Optional perspective
+│   │   ├── security-specialist.agent.md # Optional perspective
+│   │   └── accessibility-specialist.agent.md # Optional perspective
 │   ├── skills/                    # 8 slash commands (SKILL.md)
 │   │   ├── assess/SKILL.md
 │   │   ├── probe/SKILL.md
@@ -194,7 +208,7 @@ your-project/
 
 1. **Never assume the domain.** Always `/assess` first. When in doubt, assume Complex.
 2. **No building in Complex.** Only safe-to-fail probes. If the need isn't validated, you're in Complex.
-3. **All perspectives matter.** Use `/mob` for significant decisions. Six viewpoints catch blind spots.
+3. **All perspectives matter.** Use `/mob` for significant decisions. Core perspectives (business, customer, architect) catch blind spots; optional specialists go deep when needed.
 4. **Document everything.** If it's not in `docs/`, it didn't happen.
 5. **Start with the need.** Every action must trace to a validated need. Needs can be hypotheses.
 6. **Dynamics are natural.** Areas move between domains — including backwards. That's reality, not failure.

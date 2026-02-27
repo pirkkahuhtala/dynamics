@@ -2,14 +2,14 @@
 
 > **Every feature, decision, and line of code starts with understanding where we are.**
 
-This environment uses the [Cynefin Dynamics](https://cynefin.io/wiki/Cynefin_Dynamics) framework to guide digital product development from the earliest idea validation through to scaled production. It is designed for **mob-style collaboration** where business, customer, design, development, data, and cloud perspectives are always present.
+This environment uses the [Cynefin Dynamics](https://cynefin.io/wiki/Cynefin_Dynamics) framework to guide digital product development from the earliest idea validation through to scaled production. It is designed for **mob-style collaboration** where core perspectives (business, customer, architecture) are always present, and specialist perspectives (development, design, data, cloud, security, accessibility) are invited based on topic relevance.
 
 ## Core Philosophy
 
 1. **Start with the need.** Never build before the need is validated. Every action must trace back to a real need.
 2. **Know where you are.** Every topic/area is mapped to a Cynefin domain. The domain determines HOW you work, not WHAT you work on.
 3. **Document everything.** Every decision is an ADR in `docs/decisions/`. Every experiment is logged in `docs/probes/`. The journal `docs/project-journal.md` tracks chronological progress.
-4. **All perspectives matter.** No significant decision without hearing from business, customer, design, dev, data, and cloud viewpoints.
+4. **All perspectives matter.** No significant decision without hearing from business, customer, and architecture viewpoints. Invite specialist perspectives (dev, design, data, cloud, security, accessibility) based on topic relevance.
 5. **Dynamics are natural.** Things move between domains. What was chaotic becomes complex, what was complex becomes complicated, and eventually clear. But regression happens too — and that's OK.
 
 ## Cynefin Domains
@@ -54,7 +54,7 @@ This environment uses the [Cynefin Dynamics](https://cynefin.io/wiki/Cynefin_Dyn
 | `/probe [hypothesis]` | Design safe-to-fail experiment | In Complex domain |
 | `/validate [area]` | Check transition readiness | At inflection points |
 | `/decide [title]` | Record decision as ADR | Any significant decision |
-| `/mob [topic]` | All 6 perspectives weigh in | Major decisions |
+| `/mob [topic]` | Core + relevant perspectives weigh in | Major decisions |
 | `/retro` | Retrospective | Regularly, or when stuck |
 | `/pivot [reason]` | Trigger Red Line dynamic | When direction is fundamentally wrong |
 | `/status` | Show project overview | Start of session |
@@ -67,7 +67,7 @@ This environment uses **agent handoffs** to guide you through the appropriate wo
 2. **Domain agents** do the work — `@probe-runner`, `@solution-builder`, `@standardizer`, `@disruptor`
 3. **`@pattern-validator`** operates at inflection points between domains
 4. **`@mob-facilitator`** orchestrates all-perspective mob sessions
-5. **Perspective agents** provide specialized viewpoints — `@business-strategist`, `@customer-advocate`, `@designer`, `@developer`, `@data-specialist`, `@cloud-infra`
+5. **Perspective agents** provide specialized viewpoints — **Core:** `@business-strategist`, `@customer-advocate`, `@architect` | **Optional:** `@developer`, `@designer`, `@data-specialist`, `@cloud-infra`, `@security-specialist`, `@accessibility-specialist`
 
 Agents will offer handoff buttons to guide transitions naturally.
 

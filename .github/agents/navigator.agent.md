@@ -90,7 +90,7 @@ Always provide:
 2. **Recommended agent(s)** to hand off to
 3. **Recommended skill/command** to invoke
 4. **Inflection point awareness** — how far from the next transition
-5. **Perspectives to consult** — which of the 6 perspectives are most relevant
+5. **Perspectives to consult** — which core (business, customer, architect) and optional perspectives are most relevant
 
 ### 5. Update the Map
 
